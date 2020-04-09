@@ -16,15 +16,15 @@ import java.util.HashMap;
 
 public class ExcelWrite {
     /////////////
-    public WritableWorkbook createWritableWorkbook(String EXCEL_FILE_LOCATION) throws IOException {
+    public static WritableWorkbook createWritableWorkbook(String EXCEL_FILE_LOCATION) throws IOException {
         return Workbook.createWorkbook(new File(EXCEL_FILE_LOCATION));
     }
 
-    public WritableSheet createWritableSheet(WritableWorkbook writableWorkbook, String sheetName) {
+    public static WritableSheet createWritableSheet(WritableWorkbook writableWorkbook, String sheetName) {
         return writableWorkbook.createSheet(sheetName, 0);
     }
 
-    private void writeHeadersToSheet(WritableSheet ws, ResultSetMetaData rs, CellView cellView) throws SQLException, WriteException {
+    private static void writeHeadersToSheet(WritableSheet ws, ResultSetMetaData rs, CellView cellView) throws SQLException, WriteException {
         for (int i = 0; i < rs.getColumnCount(); i++) {
             WritableFont cellFont = new WritableFont(WritableFont.COURIER,14);
             cellFont.setBoldStyle(WritableFont.BOLD);
@@ -43,7 +43,7 @@ public class ExcelWrite {
         }
     }
 
-    private HashMap dataTypesMap(ResultSetMetaData resultSetMetaData) throws SQLException {
+    private static HashMap dataTypesMap(ResultSetMetaData resultSetMetaData) throws SQLException {
         HashMap typesMap = new HashMap();
         for (int i = 0; i < resultSetMetaData.getColumnCount(); i++) {
             typesMap.put(i, resultSetMetaData.getColumnTypeName(i+1));
@@ -51,7 +51,7 @@ public class ExcelWrite {
         return typesMap;
     }
 
-    public boolean resultSetToFile(ResultSet resultSet, String filePath) throws SQLException, IOException {
+    public static boolean resultSetToFile(ResultSet resultSet, String filePath) throws SQLException, IOException {
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         int columnCount = resultSetMetaData.getColumnCount();
         WritableWorkbook workbook = createWritableWorkbook(filePath);
