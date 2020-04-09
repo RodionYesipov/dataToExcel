@@ -21,7 +21,7 @@ public class Main {
             stat.execute("INSERT INTO test VALUES(1, 'Rodion', 'Yesipov', '1993-08-21')");
             stat.execute("INSERT INTO test VALUES(2, 'Vasya', 'Pupkin', '1990-08-01')");
             ResultSet rs;
-            rs = stat.executeQuery("SELECT * FROM test");
+            rs = stat.executeQuery("SELECT id as clientid, name as myName, surName as familia, birthDay FROM test");
             ExcelWrite excelWrite = new ExcelWrite();
             excelWrite.resultSetToFile(rs, "D:\\1.xls");
 

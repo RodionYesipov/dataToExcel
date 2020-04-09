@@ -34,7 +34,7 @@ public class ExcelWrite {
             cellFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
             ws.setColumnView(i, cellView);
 
-            Label header = new Label(i, 0, rs.getColumnName(i + 1),cellFormat);
+            Label header = new Label(i, 0, rs.getColumnLabel(i + 1),cellFormat);
             try {
                 ws.addCell(header);
             } catch (WriteException ex) {
